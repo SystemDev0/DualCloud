@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>XCloud PS4 - Ajustes</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        body { background-color: #0B0B0B; color: #fff; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+        .settings-container { width: 100%; max-width: 800px; padding: 40px; background: rgba(255,255,255,0.02); border-radius: 20px; border: 1px solid rgba(255,255,255,0.05); }
+        h1 { font-size: 24px; margin-bottom: 30px; border-bottom: 2px solid #107C10; padding-bottom: 10px; display: inline-block; }
+        .setting-group { margin-bottom: 25px; display: flex; justify-content: space-between; align-items: center; padding: 15px; background: #111; border-radius: 10px; }
+        .setting-info h3 { font-size: 16px; margin-bottom: 5px; }
+        .setting-info p { font-size: 13px; color: #888; }
+        select { background: #222; color: #fff; border: 1px solid #444; padding: 10px 15px; border-radius: 8px; font-size: 14px; outline: none; cursor: pointer; }
+        .toggle-group { display: flex; background: #222; border-radius: 8px; overflow: hidden; border: 1px solid #444; }
+        .toggle-btn { background: transparent; color: #888; border: none; padding: 10px 20px; cursor: pointer; font-size: 14px; font-weight: bold; transition: 0.2s; }
+        .toggle-btn.active { background: #107C10; color: #fff; }
+        .btn-back { display: inline-block; margin-top: 30px; color: #107C10; text-decoration: none; font-weight: bold; font-size: 14px; cursor: pointer; }
+        .btn-back:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+    <div class="settings-container">
+        <h1>Configuración del Sistema</h1>
+
+        <div class="setting-group">
+            <div class="setting-info">
+                <h3>Idioma de la App</h3>
+                <p>Selecciona el idioma de los menús.</p>
+            </div>
+            <select>
+                <option>Español (Latinoamérica)</option>
+                <option>English (US)</option>
+                <option>Português (Brasil)</option>
+            </select>
+        </div>
+
+        <div class="setting-group">
+            <div class="setting-info">
+                <h3>País de Sesión</h3>
+                <p>Evita problemas de PIN en regiones no soportadas.</p>
+            </div>
+            <select>
+                <option>Brasil</option>
+                <option>Estados Unidos</option>
+                <option>Japón</option>
+                <option>Colombia</option>
+            </select>
+        </div>
+
+        <div class="setting-group">
+            <div class="setting-info">
+                <h3>Calidad de Streaming</h3>
+                <p>Ajusta el uso de datos y la nitidez del juego.</p>
+            </div>
+            <select>
+                <option>Automático (Recomendado)</option>
+                <option>1080p (Alto)</option>
+                <option>720p (Medio)</option>
+            </select>
+        </div>
+
+        <div class="setting-group">
+            <div class="setting-info">
+                <h3>Interfaz de Mando</h3>
+                <p>Cambia los iconos de los botones en pantalla.</p>
+            </div>
+            <div class="toggle-group">
+                <button id="btnPS" class="toggle-btn" onclick="cambiarMando('PS')">PlayStation (△○×□)</button>
+                <button id="btnXbox" class="toggle-btn" onclick="cambiarMando('XBOX')">Xbox (ABXY)</button>
+            </div>
+        </div>
+
+        <a href="menu.html" class="btn-back">← Volver al Menú Principal</a>
+    </div>
+
+    <script>
+        // Al cargar la página, revisamos qué mando está guardado (por defecto PS)
+        window.onload = () => {
+            const mandoGuardado = localStorage.getItem('mando') || 'PS';
+            actualizarBotones(mandoGuardado);
+        };
+
+        function cambiarMando(modo) {
+            localStorage.setItem('mando', modo); // Guarda la elección en la memoria del navegador
+            actualizarBotones(modo);
+        }
+
+        function actualizarBotones(modo) {
+            const btnPS = document.getElementById('btnPS');
+            const btnXbox = document.getElementById('btnXbox');
+
+            if (modo === 'PS') {
+                btnPS.classList.add('active');
+                btnXbox.classList.remove('active');
+            } else {
+                btnXbox.classList.add('active');
+                btnPS.classList.remove('active');
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>XCLOUD PS4 - Jugando</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        body { 
+            background-color: #000; 
+            color: #fff; 
+            height: 100vh; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center; 
+            overflow: hidden; 
+            background-image: radial-gradient(circle at center, #0f1a12 0%, #000 100%);
+        }
+        
+        .game-title { font-size: 36px; font-weight: 800; margin-bottom: 10px; color: #fff; text-shadow: 0 2px 10px rgba(0,0,0,0.8); }
+        .loading-text { font-size: 16px; color: #107C10; margin-bottom: 40px; font-weight: 600; letter-spacing: 1px; animation: pulse 1.5s infinite; }
+        .spinner { width: 50px; height: 50px; border: 5px solid rgba(255, 255, 255, 0.1); border-top: 5px solid #107C10; border-radius: 50%; animation: spin 1s linear infinite; margin-bottom: 60px; }
+        
+        /* Mensaje de éxito (Simulando que el juego cargó) */
+        .success-message {
+            display: none;
+            font-size: 24px;
+            font-weight: bold;
+            color: #fff;
+            text-align: center;
+            animation: fadeIn 1s;
+        }
+        .success-message span { color: #107C10; }
+
+        .exit-btn { 
+            position: absolute; bottom: 40px;
+            background: rgba(255, 255, 255, 0.1); color: white; border: 1px solid rgba(255,255,255,0.2); 
+            padding: 12px 24px; border-radius: 30px; font-weight: bold; cursor: pointer; transition: all 0.2s; 
+        }
+        .exit-btn:hover { background: #d13c3c; border-color: #d13c3c; }
+
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
+        @keyframes fadeIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+    </style>
+</head>
+<body>
+
+    <!-- Pantalla de carga simulada -->
+    <div id="loadingUI">
+        <div class="game-title" id="tituloJuego">Cargando...</div>
+        <div class="loading-text">Iniciando streaming directo desde los servidores...</div>
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Pantalla de juego cargado (Simulada) -->
+    <div class="success-message" id="successUI">
+        <span id="nombreJuegoFinal">Juego</span> está corriendo.<br><br>
+        <span style="font-size: 14px; color: #888;">(Beta: Aquí se vería el juego real)</span>
+    </div>
+
+    <button class="exit-btn" onclick="window.location.href='menu.html'">Salir al Menú Principal</button>
+
+    <script>
+        window.onload = () => {
+            // Leer el nombre del juego
+            const urlParams = new URLSearchParams(window.location.search);
+            const juego = urlParams.get('juego') || "Juego Desconocido";
+            
+            // Mostrar el nombre en la pantalla de carga
+            document.getElementById('tituloJuego').innerText = juego;
+            document.getElementById('nombreJuegoFinal').innerText = juego;
+
+            // Simular el tiempo de carga de xCloud (5 segundos)
+            setTimeout(() => {
+                // Ocultar la pantalla de carga
+                document.getElementById('loadingUI').style.display = 'none';
+                // Mostrar el mensaje de que el juego ya "cargó"
+                document.getElementById('successUI').style.display = 'block';
+            }, 5000);
+        };
+    </script>
+</body>
+</html>
