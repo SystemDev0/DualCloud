@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>DUAL CLOUD - Inicio</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: #080808; color: #FFFFFF; min-height: 100vh; background: radial-gradient(circle at top right, #0f1a12 0%, #080808 50%, #000000 100%); overflow-x: hidden; padding-bottom: 70px; }
+        .navbar { display: flex; justify-content: space-between; align-items: center; padding: 25px 50px; position: sticky; top: 0; z-index: 100; background: linear-gradient(to bottom, rgba(8,8,8,0.95) 0%, rgba(8,8,8,0) 100%); }
+        .logo-area { display: flex; align-items: center; gap: 15px; font-weight: 900; font-size: 22px; letter-spacing: 1.5px; }
+        .logo-icon { color: #107C10; font-size: 26px; }
+        .nav-center { display: flex; gap: 40px; align-items: center; }
+        .nav-tab { color: #888; text-decoration: none; font-size: 16px; font-weight: 700; padding-bottom: 5px; border-bottom: 3px solid transparent; transition: all 0.3s ease; }
+        .nav-tab.active { color: #fff; border-bottom: 3px solid #107C10; }
+        .user-area { display: flex; align-items: center; gap: 12px; background: rgba(255,255,255,0.05); padding: 6px 16px; border-radius: 30px; border: 1px solid rgba(255,255,255,0.1); font-size: 14px; font-weight: 600; }
+        .user-avatar { width: 28px; height: 28px; background: #107C10; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 900; color: white; font-size: 12px; }
+        .main-content { padding: 20px 50px; max-width: 1600px; margin: 0 auto; }
+        .section-title { font-size: 22px; font-weight: 800; margin-bottom: 30px; display: flex; align-items: center; gap: 15px; }
+        .section-title span { color: #555; font-weight: 500; font-size: 15px; }
+        .games-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 30px; }
+        .game-card { position: relative; cursor: pointer; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); border-radius: 12px; border: 3px solid transparent; }
+        .focused { border-color: #107C10; transform: translateY(-8px) scale(1.02); box-shadow: 0 15px 30px rgba(16, 124, 16, 0.3); z-index: 10; }
+        .image-container { position: relative; border-radius: 12px; overflow: hidden; aspect-ratio: 3/4; margin-bottom: 12px; background: #1a1a1a; }
+        .game-img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s; }
+        .game-card:hover .game-img { transform: scale(1.05); }
+        .badges { position: absolute; bottom: 10px; left: 10px; display: flex; gap: 6px; }
+        .badge { font-size: 10px; padding: 4px 8px; border-radius: 4px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.5px; }
+        .badge.gp { background: #107C10; color: #fff; }
+        .badge.free { background: #333; color: #fff; }
+        .game-title { font-size: 15px; font-weight: 700; color: #fff; padding-left: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .bottom-bar { position: fixed; bottom: 0; left: 0; width: 100%; background: rgba(8, 8, 8, 0.95); backdrop-filter: blur(15px); border-top: 1px solid rgba(255, 255, 255, 0.08); display: flex; justify-content: center; align-items: center; gap: 40px; padding: 18px; z-index: 100; font-size: 13px; color: #aaa; font-weight: 600; }
+        .control-item { display: flex; align-items: center; gap: 10px; }
+        .btn-icon { width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 13px; background: rgba(255,255,255,0.1); color: #fff; }
+        .btn-x { color: #5c9bd1; font-size: 16px; } 
+        .btn-o { color: #d15c5c; font-size: 16px; }
+        .hidden { display: none !important; }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo-area"><div class="logo-icon">☁</div> DUAL CLOUD</div>
+        <div class="nav-center">
+            <a href="#" class="nav-tab active">Inicio</a>
+            <a href="#" class="nav-tab">Game Pass</a>
+            <a href="#" class="nav-tab">Gratis</a>
+            <a href="ajustes.html" class="nav-tab">Ajustes</a>
+        </div>
+        <div class="user-area"><div class="user-avatar">H</div> He</div>
+    </div>
+
+    <div class="main-content">
+        <div class="section-title">Tu Biblioteca <span>Mostrando 8 juegos</span></div>
+        <div class="games-grid" id="grid">
+            <div class="game-card focusable" onclick="jugar('Halo Infinite')">
+                <div class="image-container">
+                    <img class="game-img" src="https://image.tmdb.org/t/p/original/4b4a6z0d8y9v5w3x2u1t0s9r8q7.jpg" onerror="this.src='https://placehold.co/400x600/1a1a1a/107C10?text=Halo+Infinite'" alt="Halo">
+                    <div class="badges"><span class="badge gp">Game Pass</span></div>
+                </div>
+                <div class="game-title">Halo Infinite</div>
+            </div>
+            <div class="game-card focusable" onclick="jugar('Fortnite')">
+                <div class="image-container">
+                    <img class="game-img" src="https://image.tmdb.org/t/p/original/6b4a6z0d8y9v5w3x2u1t0s9r8q7.jpg" onerror="this.src='https://placehold.co/400x600/1a1a1a/107C10?text=Fortnite'" alt="Fortnite">
+                    <div class="badges"><span class="badge free">Gratis</span></div>
+                </div>
+                <div class="game-title">Fortnite</div>
+            </div>
+            <div class="game-card focusable" onclick="jugar('Forza Horizon 5')">
+                <div class="image-container">
+                    <img class="game-img" src="https://upload.wikimedia.org/wikipedia/en/8/86/Forza_Horizon_5_cover_art.jpg" alt="Forza">
+                    <div class="badges"><span class="badge gp">Game Pass</span></div>
+                </div>
+                <div class="game-title">Forza Horizon 5</div>
+            </div>
+            <div class="game-card focusable" onclick="jugar('Minecraft')">
+                <div class="image-container">
+                    <img class="game-img" src="https://upload.wikimedia.org/wikipedia/en/5/51/Minecraft_cover.png" alt="Minecraft">
+                    <div class="badges"><span class="badge gp">Game Pass</span></div>
+                </div>
+                <div class="game-title">Minecraft</div>
+            </div>
+            <div class="game-card focusable" onclick="jugar('Warzone')">
+                <div class="image-container">
+                    <img class="game-img" src="https://upload.wikimedia.org/wikipedia/en/1/1d/Call_of_Duty_Warzone_cover_art.jpg" alt="Warzone">
+                    <div class="badges"><span class="badge free">Gratis</span></div>
+                </div>
+                <div class="game-title">Call of Duty: Warzone</div>
+            </div>
+            <div class="game-card focusable" onclick="jugar('Sea of Thieves')">
+                <div class="image-container">
+                    <img class="game-img" src="https://upload.wikimedia.org/wikipedia/en/4/4e/Sea_of_Thieves_cover_art.jpg" alt="Sea of Thieves">
+                    <div class="badges"><span class="badge gp">Game Pass</span></div>
+                </div>
+                <div class="game-title">Sea of Thieves</div>
+            </div>
+            <div class="game-card focusable" onclick="jugar('The Finals')">
+                <div class="image-container">
+                    <img class="game-img" src="https://upload.wikimedia.org/wikipedia/en/a/a0/The_Finals_cover_art.jpg" alt="The Finals">
+                    <div class="badges"><span class="badge free">Gratis</span></div>
+                </div>
+                <div class="game-title">The Finals</div>
+            </div>
+            <div class="game-card focusable" onclick="jugar('Starfield')">
+                <div class="image-container">
+                    <img class="game-img" src="https://upload.wikimedia.org/wikipedia/en/1/14/Starfield_cover_art.jpg" alt="Starfield">
+                    <div class="badges"><span class="badge gp">Game Pass</span></div>
+                </div>
+                <div class="game-title">Starfield</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bottom-bar">
+        <div class="control-item"><span class="btn-icon btn-x">✕</span> Seleccionar</div>
+        <div class="control-item"><span class="btn-icon btn-o">○</span> Volver</div>
+        <div class="control-item"><span class="btn-icon">△</span> Opciones</div>
+        <div class="control-item"><span class="btn-icon">≡</span> Ajustes</div>
+    </div>
+
+    <script>
+        function jugar(nombreJuego) { window.location.href = `stream.html?juego=${encodeURIComponent(nombreJuego)}`; }
+        let focusActual = null;
+        window.onload = () => { const elementos = document.querySelectorAll('.focusable'); if (elementos.length > 0) { focusActual = elementos[0]; focusActual.classList.add('focused'); } };
+        document.addEventListener('keydown', (e) => {
+            const teclas = ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Enter'];
+            if (!teclas.includes(e.key)) return; e.preventDefault();
+            if (e.key === 'Enter') { if (focusActual) focusActual.click(); return; }
+            const focusables = Array.from(document.querySelectorAll('.focusable')).filter(el => !el.classList.contains('hidden'));
+            if (focusables.length === 0) return;
+            const rect = focusActual.getBoundingClientRect(); const cx = rect.left + rect.width / 2; const cy = rect.top + rect.height / 2;
+            let mejorOpcion = null; let mejorDistancia = Infinity;
+            focusables.forEach(el => {
+                if (el === focusActual) return;
+                const elRect = el.getBoundingClientRect(); const ex = elRect.left + elRect.width / 2; const ey = elRect.top + elRect.height / 2;
+                const dx = ex - cx; const dy = ey - cy; let distancia = 0;
+                if (e.key === 'ArrowRight' && dx > 0) distancia = dx + Math.abs(dy) * 3;
+                else if (e.key === 'ArrowLeft' && dx < 0) distancia = -dx + Math.abs(dy) * 3;
+                else if (e.key === 'ArrowDown' && dy > 0) distancia = dy + Math.abs(dx) * 3;
+                else if (e.key === 'ArrowUp' && dy < 0) distancia = -dy + Math.abs(dx) * 3;
+                else return;
+                if (distancia < mejorDistancia) { mejorDistancia = distancia; mejorOpcion = el; }
+            });
+            if (mejorOpcion) { focusActual.classList.remove('focused'); focusActual = mejorOpcion; focusActual.classList.add('focused'); focusActual.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); }
+        });
+    </script>
+</body>
+</html>
